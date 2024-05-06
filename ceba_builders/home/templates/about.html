@@ -1,0 +1,125 @@
+<!-- {% extends 'base.html' %} -->
+{% load static %}
+
+{% block content %}
+
+<style>
+
+.parallax {
+  /* The image used */
+  background-image: url("../static/images/aboutUS.png");
+  /* Set a specific height */
+  height: 100%; 
+  width: 100%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* @media(max-width : 450px){
+    .parallax{
+        height:200px;
+        width: 100%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+} */
+.indented-paragraph {
+    text-indent: 80px; /* Adjust the value as needed */
+}
+
+section {
+    overflow: hidden;
+    position: relative;
+}
+
+.news-container {
+    display: flex;
+    animation: scrollNews 20s linear infinite; /* Adjust the duration as needed */
+}
+
+.news-item {
+    flex: 0 0 auto;
+    width: 30%;
+    box-sizing: border-box;
+    padding: 1px;
+    text-align: center;
+    /* border: 1px solid #ccc; */
+    margin-right: -5%;
+}
+
+@keyframes scrollNews {
+    0% {
+    transform: translateX(0);
+    }
+    100% {
+    transform: translateX(-100%);
+    }
+}
+
+@media(max-width:470px){
+    .logo-img {
+        position: absolute;
+        right: 15;
+        bottom: 5;
+        width: 25%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        border: 5px solid  #282828;; /* Specify border properties */
+    }
+}
+</style>
+
+    <div class="container-about parallax">
+        <div class="centered" id="bold-text-header">About US</div>
+    </div>
+
+    <!-- About -->
+        <!-- Introduction Section -->
+        <div class="row mt-5 mx-5">
+            <div class="col-md-8">
+                <h1 style="font-weight: 800; display: inline;" id="bold-text-header">ABOUT <span style="color:#9f8953;">CEBA BUILDERS & DEVELOPERS</span></h1>
+                <p class="indented-paragraph mt-2" id="font-famly">
+                    At CEBA, we take pride in being a leading building construction company dedicated to transforming visions into reality.
+                    Located in Chalod, Kannur, Kerala, our commitment to excellence and unwavering integrity sets us apart in the construction industry.
+                </p>
+                <h5>
+                    <b>Our Services:</b>
+                </h5>
+                <p>
+                    Building Dreams, Crafting Futures:<br>
+                    <p class="indented-paragraph mt-2" id="font-famly">
+                        Our comprehensive range of services encompasses every aspect of building construction. From residential homes to commercial spaces, 
+                        we bring expertise and innovation to each project. CEBA is your one-stop solution for quality construction that stands the test of time.
+                    </p>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/about_image-1.jpg' %}" alt="intro-image1" style="width:100%; height: 100%; margin-right: 10%; border-radius: 20px;">
+            </div>
+        </div>
+
+        <!-- Latest Work -->
+
+            <div class="container mb-4" style="text-align: center;"> 
+                <h4 class="mt-5" id="bold-text-header" style="font-weight: 700;">Latest Work</h4>
+            </div>
+
+            <section>
+                <div class="container news-container">
+                  <!-- Add your news items here -->
+                  <div class="news-item"><img src="{% static 'images/image-1.jpeg' %}" width="80%" alt="News Image 1"></div>
+                  <div class="news-item"><img src="{% static 'images/image-9.jpeg' %}" width="80%" alt="News Image 2"></div>
+                  <div class="news-item"><img src="{% static 'images/image-3.jpeg' %}" width="80%" alt="News Image 4"></div>
+                  <div class="news-item"><img src="{% static 'images/image-11.jpeg' %}" width="80%" alt="News Image 5"></div>
+                  <div class="news-item"><img src="{% static 'images/image-5.jpeg' %}" width="80%" alt="News Image 6"></div>
+                  <div class="news-item"><img src="{% static 'images/image-12.jpeg' %}" width="80%" alt="News Image 7"></div>
+                  <div class="news-item"><img src="{% static 'images/image-7.jpeg' %}" width="80%" alt="News Image 8"></div>
+                  <div class="news-item"><img src="{% static 'images/image-20.jpeg' %}" width="80%" alt="News Image 9"></div>
+                  <!-- Add more news items as needed -->
+                </div>
+              </section>
+
+{% endblock %}

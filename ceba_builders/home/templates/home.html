@@ -1,0 +1,1086 @@
+<!-- {% extends 'base.html' %} -->
+
+{% block title %}
+Home
+{% endblock %}
+{% load static %}
+
+{% block content %}
+    
+<!-- Banners -->
+<style>
+
+input[type=radio] {
+  position: absolute;
+  top: -5000px;
+  left: -5000px;
+  opacity: 0;
+  z-index: -1000;
+}
+.slider {
+  position: relative;
+  height: 90%;
+  width: 100%;
+}
+@media(max-width : 800px){
+  .slider {
+    height: 50%;
+    width: 100%;
+  }
+}
+@media(max-width : 500px){
+  .slider {
+    height: 20%;
+    width: 100%;
+  }
+}
+
+.slider--control {
+  z-index: 50;
+  position: absolute;
+  top: calc(50% - 2rem);
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+.slider--control.left {
+  left: 4rem;
+}
+.slider--control.right {
+  right: 4rem;
+}
+@media(max-width:470px){
+  .slider--control{
+    width:1rem;
+    height: 1rem;
+    top: calc(50% - 1rem);
+  }
+  .slider--control.left {
+  left: 1rem;
+}
+.slider--control.right {
+  right: 1rem;
+}
+}
+.slider--control label {
+  z-index: 2000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transform: scale(0);
+  transition: transform 0s 0s;
+}
+.slider--el {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 2.8s, z-index 0.1s;
+  overflow: hidden;
+}
+.slider--el.anim-5parts .part {
+  position: absolute;
+  top: 0;
+  width: 20.1%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+.slider--el.anim-5parts .part:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background-size: cover;
+  top: 0;
+  width: 500%;
+  height: 100%;
+  background-image: url('../static/images/banner_4.jpg');
+}
+.slider--el.anim-5parts .part.part-1 {
+  transition: transform 1.1s 0.3s;
+  left: 0%;
+}
+.slider--el.anim-5parts .part.part-1:before {
+  left: 0%;
+}
+.slider--el.anim-5parts .part.part-2 {
+  transition: transform 1.1s 0.5s;
+  left: 20%;
+}
+.slider--el.anim-5parts .part.part-2:before {
+  left: -100%;
+}
+.slider--el.anim-5parts .part.part-3 {
+  transition: transform 1.1s 0.7s;
+  left: 40%;
+}
+.slider--el.anim-5parts .part.part-3:before {
+  left: -200%;
+}
+.slider--el.anim-5parts .part.part-4 {
+  transition: transform 1.1s 0.5s;
+  left: 60%;
+}
+.slider--el.anim-5parts .part.part-4:before {
+  left: -300%;
+}
+.slider--el.anim-5parts .part.part-5 {
+  transition: transform 1.1s 0.3s;
+  left: 80%;
+}
+.slider--el.anim-5parts .part.part-5:before {
+  left: -400%;
+}
+.slider--el.anim-5parts .part {
+  transform: translateY(100%);
+}
+.slider--el.anim-9parts .slider--el-bg {
+  perspective: 2000;
+}
+.slider--el.anim-9parts .part {
+  position: absolute;
+  width: 33.5%;
+  height: 33.5%;
+  overflow: hidden;
+  will-change: transform;
+  transform-origin: 0% 100%;
+}
+.slider--el.anim-9parts .part:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background-size: cover;
+  width: 300%;
+  height: 300%;
+  background-image: url('../static/images/banner_2.jpg');
+}
+.slider--el.anim-9parts .part.left-top {
+  top: 0%;
+  left: 0%;
+  transition: transform 0.9s 0.5s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 0.9s;
+}
+.slider--el.anim-9parts .part.left-top:before {
+  top: 0%;
+  left: 0%;
+}
+.slider--el.anim-9parts .part.mid-top {
+  top: 0%;
+  left: 33.3333333333%;
+  transition: transform 0.9s 0.4s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 0.8s;
+}
+.slider--el.anim-9parts .part.mid-top:before {
+  top: 0%;
+  left: -100%;
+}
+.slider--el.anim-9parts .part.right-top {
+  top: 0%;
+  left: 66.6666666667%;
+  transition: transform 0.9s 0.5s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 0.9s;
+}
+.slider--el.anim-9parts .part.right-top:before {
+  top: 0%;
+  left: -200%;
+}
+.slider--el.anim-9parts .part.left-mid {
+  top: 33.3333333333%;
+  left: 0%;
+  transition: transform 0.9s 0.6s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 1s;
+}
+.slider--el.anim-9parts .part.left-mid:before {
+  top: -100%;
+  left: 0%;
+}
+.slider--el.anim-9parts .part.mid-mid {
+  top: 33.3333333333%;
+  left: 33.3333333333%;
+  transition: transform 0.9s 0.3s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 0.7s;
+}
+.slider--el.anim-9parts .part.mid-mid:before {
+  top: -100%;
+  left: -100%;
+}
+.slider--el.anim-9parts .part.right-mid {
+  top: 33.3333333333%;
+  left: 66.6666666667%;
+  transition: transform 0.9s 0.6s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 1s;
+}
+.slider--el.anim-9parts .part.right-mid:before {
+  top: -100%;
+  left: -200%;
+}
+.slider--el.anim-9parts .part.left-bot {
+  top: 66.6666666667%;
+  left: 0%;
+  transition: transform 0.9s 0.7s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 1.1s;
+}
+.slider--el.anim-9parts .part.left-bot:before {
+  top: -200%;
+  left: 0%;
+}
+.slider--el.anim-9parts .part.mid-bot {
+  top: 66.6666666667%;
+  left: 33.3333333333%;
+  transition: transform 0.9s 0.8s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 1.2s;
+}
+.slider--el.anim-9parts .part.mid-bot:before {
+  top: -200%;
+  left: -100%;
+}
+.slider--el.anim-9parts .part.right-bot {
+  top: 66.6666666667%;
+  left: 66.6666666667%;
+  transition: transform 0.9s 0.7s cubic-bezier(0.58, -0.7, 0.59, 0.95), opacity 0.6s 1.1s;
+}
+.slider--el.anim-9parts .part.right-bot:before {
+  top: -200%;
+  left: -200%;
+}
+.slider--el.anim-9parts .part {
+  transform: rotateX(90deg);
+  opacity: 0;
+}
+.slider--el.anim-3parts .part {
+  position: absolute;
+  top: 0;
+  width: 33.5%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 1.5s 0.3s;
+  will-change: transform;
+}
+.slider--el.anim-3parts .part:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background-size: cover;
+  width: 300%;
+  height: 100%;
+  background-image: url('../static/images/banner_3.jpg');
+}
+.slider--el.anim-3parts .part.left {
+  left: 0;
+}
+.slider--el.anim-3parts .part.left:before {
+  left: 0;
+}
+.slider--el.anim-3parts .part.mid {
+  left: 33.3333333333%;
+}
+.slider--el.anim-3parts .part.mid:before {
+  left: -100%;
+}
+.slider--el.anim-3parts .part.right {
+  left: 66.6666666667%;
+}
+.slider--el.anim-3parts .part.right:before {
+  left: -200%;
+}
+.slider--el.anim-3parts .left {
+  transform: translate3D(-100%, -33.333%, 0);
+}
+.slider--el.anim-3parts .mid {
+  transform: translate3D(0, 100%, 0);
+}
+.slider--el.anim-3parts .right {
+  transform: translate3D(100%, -33.333%, 0);
+}
+
+
+.slider--el.anim-4parts .part {
+  position: absolute;
+  width: 50.2%;
+  height: 50.2%;
+  overflow: hidden;
+  will-change: transform;
+}
+.slider--el.anim-4parts .part:before {
+  content: "her";
+  display: block;
+  position: absolute;
+  background-size: cover;
+  width: 200%;
+  height: 200%;
+  background-image: url('../static/images/construction.jpg');
+}
+.slider--el.anim-4parts .part.top {
+  top: 0;
+  transition: transform 1.3s 0.3s;
+}
+.slider--el.anim-4parts .part.top:before {
+  top: 0;
+}
+.slider--el.anim-4parts .part.bot {
+  top: 50%;
+  transition: transform 1.3s 0.5s;
+}
+.slider--el.anim-4parts .part.bot:before {
+  top: -100%;
+}
+.slider--el.anim-4parts .part.left {
+  left: 0;
+}
+.slider--el.anim-4parts .part.left:before {
+  left: 0;
+}
+.slider--el.anim-4parts .part.right {
+  left: 50%;
+}
+.slider--el.anim-4parts .part.right:before {
+  left: -100%;
+}
+.slider--el.anim-4parts .left {
+  transform: translateX(-100%);
+}
+.slider--el.anim-4parts .right {
+  transform: translateX(100%);
+}
+.slider--el-bg {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  transition: transform 1s 1.5s;
+  will-change: transform;
+}
+.slider--el-bg .part:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+}
+.slider--el-content {
+  position: absolute;
+  top: -200;
+  left: -100;
+  width: 100%;
+  height: 100%;
+  padding: 20rem;
+  transition: opacity 0.3s;
+  opacity: 0;
+  
+}
+@media(max-width : 470px){
+  .slider--el-content{
+    top: -300;
+    left: -270;
+  }
+}
+.slider--el-heading {
+  font-family: Tesla;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 300%;
+
+}
+@media(max-width : 470px){
+  .slider--el-heading{
+    font-size: 100%;
+  }
+}
+/* CONTROL */
+#page1:checked ~ .slider--el-1 {
+  z-index: 10;
+}
+#page1:checked ~ .slider--el-1 .slider--el-bg {
+  transform: scale(0.834);
+}
+#page1:checked ~ .slider--el-1 .slider--el-content {
+  opacity: 1;
+  transition: opacity 0.3s 1.8s;
+}
+#page1:checked ~ .slider--el-1 .part {
+  transform: translateZ(0);
+  opacity: 1;
+}
+#page2:checked ~ .slider--el-2 {
+  z-index: 10;
+}
+#page2:checked ~ .slider--el-2 .slider--el-bg {
+  transform: scale(0.834);
+}
+#page2:checked ~ .slider--el-2 .slider--el-content {
+  opacity: 1;
+  transition: opacity 0.3s 1.8s;
+}
+#page2:checked ~ .slider--el-2 .part {
+  transform: translateZ(0);
+  opacity: 1;
+}
+#page3:checked ~ .slider--el-3 {
+  z-index: 10;
+}
+#page3:checked ~ .slider--el-3 .slider--el-bg {
+  transform: scale(0.834);
+}
+#page3:checked ~ .slider--el-3 .slider--el-content {
+  opacity: 1;
+  transition: opacity 0.3s 1.8s;
+}
+#page3:checked ~ .slider--el-3 .part {
+  transform: translateZ(0);
+  opacity: 1;
+}
+#page4:checked ~ .slider--el-4 {
+  z-index: 10;
+}
+#page4:checked ~ .slider--el-4 .slider--el-bg {
+  transform: scale(0.834);
+}
+#page4:checked ~ .slider--el-4 .slider--el-content {
+  opacity: 1;
+  transition: opacity 0.3s 1.8s;
+}
+#page4:checked ~ .slider--el-4 .part {
+  transform: translateZ(0);
+  opacity: 1;
+}
+#page1:checked ~ .slider--control.left .page4-left {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page1:checked ~ .slider--control.right .page2-right {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page2:checked ~ .slider--control.left .page1-left {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page2:checked ~ .slider--control.right .page3-right {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page3:checked ~ .slider--control.left .page2-left {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page3:checked ~ .slider--control.right .page4-right {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page4:checked ~ .slider--control.left .page3-left {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+#page4:checked ~ .slider--control.right .page1-right {
+  z-index: 5000;
+  transform: scale(1);
+  transition: transform 0s 2.1s;
+}
+
+.parallax {
+  background-image: url("../static/images/construction.jpg");
+  min-height: 500px;
+  max-width: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media(max-width:800px){
+  .parallax{
+    min-height: 700px;
+  }
+}
+
+.indented-paragraph {
+text-indent: 80px; /* Adjust the value as needed */
+}
+
+.card-body{
+    background-color: rgb(247, 241, 59);
+}
+
+.image-container {
+  background-color: aqua;
+}
+
+.column {
+  text-align: center; /* Center text in the column */
+}
+
+/* Custom style for image */
+.column img {
+  margin-top: 10px; /* Add some space between text and image */
+}
+
+#margin-top{
+  margin-top: 20px;
+}
+
+.images { 
+  display: flex; 
+  flex-wrap: wrap; 
+  /* margin: 0 50px;  */
+  padding: 30px; 
+} 
+
+.photo { 
+  max-width: 31.333%; 
+  padding: 0 5px; 
+  height: 240px; 
+  margin-bottom: 10px;
+} 
+
+.photo img { 
+  width: 100%; 
+  height: 100%; 
+} 
+
+#main-head{
+  font-weight: 900;
+}
+
+/* squre animation */
+
+.slider-square {
+    /* pa-bottom: 5%; */
+  margin-left: 4%;
+	width: 200px;
+	height: 200px;
+	-webkit-perspective: 600px;
+	        perspective: 600px;
+}
+
+	.slider-square * {
+		-webkit-transition: all 1s cubic-bezier(0.5, -0.75, 0.2, 1.5);
+		transition: all 1s cubic-bezier(0.5, -0.75, 0.2, 1.5);
+	}
+
+	.container-animation {
+		width: inherit;
+		height: inherit;
+		-webkit-transform-style: preserve-3d;
+		        transform-style: preserve-3d;
+		-webkit-transform: rotateY(0deg) rotateX(0deg);
+		        transform: rotateY(0deg) rotateX(0deg);
+	}
+
+		.slide, .slide:after, .slide:before {
+			display: block;
+			width: inherit;
+			height: inherit;
+			background: url('https://cdn.dribbble.com/users/5031/screenshots/7008431/dribbble.png');
+			position: absolute;
+			-webkit-transform-style: preserve-3d;
+			        transform-style: preserve-3d;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.slide.x {
+		  -webkit-transform: rotateY(90deg);
+		          transform: rotateY(90deg);
+		} 
+
+			.slide.x:after {
+				content: '';
+				background-image: url('https://img.freepik.com/free-photo/construction-site-operations-background_1409-5622.jpg?t=st=1705730044~exp=1705733644~hmac=fddf401409420b6c1c44f186979b57ba6f36b89da7b8ec99260624f94f353e48&w=826');
+				-webkit-transform: translateZ(100px) rotateZ(-90deg);
+				        transform: translateZ(100px) rotateZ(-90deg);
+			}
+
+			.slide.x:before {
+				content: '';
+				background-image: url('https://img.freepik.com/free-photo/civil-engineer-construction-worker-architects-wearing-hardhats-safety-vests-are-working-together-construction-site-building-home-cooperation-teamwork-concept_640221-172.jpg?w=740&t=st=1705732847~exp=1705733447~hmac=17b2bbeeaf4d74452a424bd8cb84f610858634ebe62dd825e9123d46b38ac2e4');
+				-webkit-transform: translateZ(-100px) rotateZ(-90deg);
+				        transform: translateZ(-100px) rotateZ(-90deg);
+			}
+
+		.slide.y {
+		  -webkit-transform: rotateX(90deg);
+		          transform: rotateX(90deg);
+		} 
+
+			.slide.y:after {
+				content: '';
+				background-image: url('https://img.freepik.com/free-photo/working-hard-building-man-construction-worker_1122-1849.jpg?1&w=740&t=st=1705732803~exp=1705733403~hmac=0129e4aaf82fa819563f77f66359a627cda7de7a3101a1167bd80493802adc24');
+				-webkit-transform: translateZ(100px) scale(-1);
+				        transform: translateZ(100px) scale(-1);
+			}
+
+			.slide.y:before {
+				content: '';
+				background-image: url('https://img.freepik.com/free-photo/crop-architect-opening-blueprint_23-2147710985.jpg?w=740&t=st=1705732782~exp=1705733382~hmac=43e8883d3591c9219ced57e98fb8577629e8edf22e2fb30795cd554f173b4048');
+				-webkit-transform: translateZ(-100px);
+				        transform: translateZ(-100px);
+			}
+
+		.slide.z {
+		  -webkit-transform: rotateX(0);
+		          transform: rotateX(0);
+		} 
+
+			.slide.z:after {
+				content: '';
+				background-image: url('https://img.freepik.com/free-photo/civil-engineer-construction-worker-manager-holding-digital-tablet-blueprints-talking-planing-about-construction-site-cooperation-teamwork-concept_640221-156.jpg?w=740&t=st=1705732765~exp=1705733365~hmac=4542143091e34afdeb7a6587fbab511692b333dbdadde47e984b28dc2af9677a');
+				-webkit-transform: translateZ(100px);
+				        transform: translateZ(100px);
+			}
+
+			.slide.z:before {
+				content: '';
+				background-image: url('https://img.freepik.com/free-photo/pointing-sketch_1098-14323.jpg?w=740&t=st=1705732735~exp=1705733335~hmac=7572bf7920600ebdec9112cf35a8fd6c3f3c63fec4a867712bc9ae785537e51b');
+				-webkit-transform: translateZ(-100px);
+				        transform: translateZ(-100px);
+			}
+
+
+		.container-animation {
+			-webkit-animation: rotate 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
+			animation: rotate 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
+		}
+
+		@-webkit-keyframes rotate {
+			0%, 10% {-webkit-transform: rotateY(0deg) rotateX(0deg);transform: rotateY(0deg) rotateX(0deg);}
+			15%, 20% {-webkit-transform: rotateY(180deg) rotateX(0deg);transform: rotateY(180deg) rotateX(0deg);}
+			25%, 35% {-webkit-transform: rotateY(180deg) rotateX(270deg);transform: rotateY(180deg) rotateX(270deg);}
+			40%, 50% {-webkit-transform: rotateY(180deg) rotateX(90deg);transform: rotateY(180deg) rotateX(90deg);}
+			55%, 65% {-webkit-transform: rotateY(-90deg) rotateX(90deg);transform: rotateY(-90deg) rotateX(90deg);}
+			70%, 80% {-webkit-transform: rotateY(90deg) rotateX(90deg);transform: rotateY(90deg) rotateX(90deg);}
+			90%, 95% {-webkit-transform: rotateY(0deg) rotateX(90deg);transform: rotateY(0deg) rotateX(90deg);}
+		}
+
+		@keyframes rotate {
+			0%, 10% {-webkit-transform: rotateY(0deg) rotateX(0deg);transform: rotateY(0deg) rotateX(0deg);}
+			15%, 20% {-webkit-transform: rotateY(180deg) rotateX(0deg);transform: rotateY(180deg) rotateX(0deg);}
+			25%, 35% {-webkit-transform: rotateY(180deg) rotateX(270deg);transform: rotateY(180deg) rotateX(270deg);}
+			40%, 50% {-webkit-transform: rotateY(180deg) rotateX(90deg);transform: rotateY(180deg) rotateX(90deg);}
+			55%, 65% {-webkit-transform: rotateY(-90deg) rotateX(90deg);transform: rotateY(-90deg) rotateX(90deg);}
+			70%, 80% {-webkit-transform: rotateY(90deg) rotateX(90deg);transform: rotateY(90deg) rotateX(90deg);}
+			90%, 95% {-webkit-transform: rotateY(0deg) rotateX(90deg);transform: rotateY(0deg) rotateX(90deg);}
+		}
+
+
+.shadow-square {
+	display: block;
+	width: 200px;
+	height: 200px;
+	background: rgba(0,0,0,0.75);
+	position: absolute;
+	top: 60%;
+	-webkit-transform: rotateX(90deg);
+	        transform: rotateX(90deg);
+	z-index: -1;
+	-webkit-filter: blur(20px);
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="20" /></filter></svg>#filter');
+	-webkit-filter: blur(20px);
+	        filter: blur(20px);
+	left: 0;
+	right: 0;
+	margin: auto;
+	-webkit-animation: rotateShadow 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
+	animation: rotateShadow 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
+}
+
+table, th, td {
+  border: 1px solid rgb(0, 0, 0);
+  /* border-collapse: collapse; */
+  
+}
+th, td {
+    padding: 5px;
+    padding-top:15px;
+    padding-bottom:15px;
+    text-align: center;
+}
+
+.images { 
+    display: flex; 
+    flex-wrap: wrap; 
+    margin: 0 50px; 
+    padding: 30px; 
+    align-items: center;
+    justify-content: center;
+  } 
+
+.why-choose{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section{
+  flex: 33.333%;
+  padding: 0 3px
+}
+
+.marg-top{
+  margin-top: 20%;
+}
+
+
+.text-nowrap{
+  height: 70px;
+}
+
+.banner-list-font{
+  font-size: 20px;
+}
+@media (max-width : 470px) {
+  .banner-list-font{
+    font-size: 6px;
+  }
+}
+</style>
+
+<div class="slider">
+    <input name="control" id="page1" type="radio" checked/>
+    <input name="control" id="page2" type="radio"/>
+    <input name="control" id="page3" type="radio"/>
+    <input name="control" id="page4" type="radio"/>
+    <div class="slider--el slider--el-1 anim-4parts hidden">
+        <div class="slider--el-bg">
+        <div class="part top left"></div>
+        <div class="part top right"></div>
+        <div class="part bot left"></div>
+        <div class="part bot right"></div>
+        </div>
+        <div class="slider--el-content">
+        <h2 class="slider--el-heading">Planning To</h2>
+        <h1 class="slider--el-heading" style="color: #FFF700; font-weight: 900;">Build a Home...?</h1>
+        </div>
+    </div>
+    <div class="slider--el slider--el-2 anim-9parts">
+        <div class="slider--el-bg">
+        <div class="part left-top"></div>
+        <div class="part mid-top"></div>
+        <div class="part right-top"></div>
+        <div class="part left-mid"></div>
+        <div class="part mid-mid"></div>
+        <div class="part right-mid"></div>
+        <div class="part left-bot"></div>
+        <div class="part mid-bot"></div>
+        <div class="part right-bot"></div>
+        </div>
+        <div class="slider--el-content">
+        <h2 class="slider--el-heading">Customer Satisfaction</h2>
+        <ul style="color: white;">
+            <li> <label class="banner-list-font" style="color: white;">Customer-Centric Building Solutions</label></ls>
+            <li> <label class="banner-list-font" style="color: white;">Committed to Client Satisfaction</label></ls>
+            <li> <label class="banner-list-font" style="color: white;">Your Vision, Our Priority</label></ls>
+        </ul>
+        </div>
+    </div>
+    <div class="slider--el slider--el-3 anim-5parts">
+        <div class="slider--el-bg">
+        <div class="part part-1"></div>
+        <div class="part part-2"></div>
+        <div class="part part-3"></div>
+        <div class="part part-4"></div>
+        <div class="part part-5"></div>
+        </div>
+        <div class="slider--el-content">
+        <h2 class="slider--el-heading">Professional Team</h2>
+        <ul style="color: white;">
+            <li> <label class="banner-list-font" style="color: white;">Expert Construction Specialists</h4></ls>
+            <li> <label class="banner-list-font"  style="color: white;">Skilled and Experienced Professionals</h4></ls>
+            <li> <label class="banner-list-font"  style="color: white;">Dedicated Team of Building Experts</h4></ls>
+        </ul>
+        </div>
+    </div>
+    <div class="slider--el slider--el-4 anim-3parts">
+        <div class="slider--el-bg">
+        <div class="part left"></div>
+        <div class="part mid"></div>
+        <div class="part right"></div>
+        </div>
+        <div class="slider--el-content">
+        <h2 class="slider--el-heading">Quality Craftsmanship</h2>
+        <ul style="color: white;">
+            <li> <label class="banner-list-font" style="color: white;">Crafting Quality Structures</label></ls>
+            <li> <label class="banner-list-font" style="color: white;">Precision in Construction</label></ls>
+            <li> <label class="banner-list-font" style="color: white;">Unmatched Craftsmanship</label></ls>
+        </ul>
+        </div>
+    </div>
+    <div class="slider--control left">
+        <label class="page1-left" for="page1"></label>
+        <label class="page2-left" for="page2"></label>
+        <label class="page3-left" for="page3"></label>
+        <label class="page4-left" for="page4"></label>
+    </div>
+    <div class="slider--control right">
+        <label class="page1-right" for="page1"></label>
+        <label class="page2-right" for="page2"></label>
+        <label class="page3-right" for="page3"></label>
+        <label class="page4-right" for="page4"></label>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row mt-5 mx-5 pb-5" >
+        <div class="col-md-8" id = 'margin-top'>
+            <h1 class="hidden" id="main-head">Canannore Emerging Business Assossiates</h1>
+            <p class="mt-4 mb-5 hidden" id="font-famly">
+                Welcome to Canannore Emerging Business Associates (CEBA) – Your Trusted Partner in Building Dreams.
+                At CEBA, we take pride in being a leading building construction company dedicated to transforming visions into reality. 
+                Located in Chalod, Kannur, Kerala, our commitment to excellence and unwavering integrity sets us apart in the construction industry.
+            </p>
+            <div class="container">
+              <div class="row justify-content-around">
+                  <div class="col-md-6"> <!-- Adjust column size for medium screens -->
+                      <div class="hidden">                
+                          <img src="{% static 'images/roofing_new_construction.png' %}" class="img-fluid" alt="intro-image1">
+                      </div>
+                  </div>
+                  <div class="col-md-6"> <!-- Adjust column size for medium screens -->
+                      <div class="hidden">                
+                          <img src="{% static 'images/architectural-drawings.png' %}" class="img-fluid" alt="intro-image1">
+                      </div>
+                  </div>
+              </div>
+          </div>          
+        </div>
+        
+        <div class="col-md-4" id ='margin-top'>
+          <div class="hidden card-body p-4">
+              <h4 class="card-title pb-4" id="bold-text-header">Get in Touch</h4>
+              <form>
+                    {% csrf_token %}
+                  <div class="form-group">
+                      <label for="name" id="bold-text-header">Name</label>
+                      <input type="text" class="form-control" id="name" name="name">
+                  </div>
+                  <div class="form-group">
+                      <label for="email" id="bold-text-header">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
+                  </div>
+                  <div class="form-group">
+                      <label for="message" id="bold-text-header">Message</label>
+                      <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-main font-size p-2" id="bold-text-header">Submit</button>
+              </form>
+          </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="pb-5" style="background-color: black;">
+  <div class="container center p-5" style="width: 100%;">
+    <div class="center text-center">
+        <h2 id="bold-text-header" style="color: rgb(255, 255, 255);">WHY CHOOSE US</h2>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <!-- First Row -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="">
+              <div class="text-center p-4">
+                <h5 class="hidden" style="color: #FFF700;"><b>PROFESSIONAL TEAM</b></h5>
+                <img class="hidden mt-4" src="{% static 'images/builder.png' %}" width="35%" height="45%" alt="Image 1">
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="">
+              <div class="text-center p-4">
+                <h5 class="hidden" style="color: #FFF700;"><b>SERVICE EXCELLENCE</b></h5>
+                <img class="hidden mt-4" src="{% static 'images/service.png' %}" width="35%" height="45%" alt="Image 2">
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="">
+              <div class="text-center p-4">
+                <h5 class="hidden" style="color: #FFF700;"><b> TIME EFFICIENCY</b></h5>
+                <img class="hidden mt-4" src="{% static 'images/back-in-time.png' %}" width="35%" height="45%" alt="Image 3">
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="">
+              <div class="text-center p-4">
+                <h5 class="hidden" style="color: #FFF700;"><b>TOP BUILDER </b></h5>
+                <img class="hidden mt-4" src="{% static 'images/business.png' %}" width="35%" height="45%" alt="Image 4">
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="">
+              <div class="text-center p-4">
+                <h5 class="hidden" style="color: #FFF700;"><b> BUDGET FRIENDLY</b></h5>
+                <img class="hidden mt-4" src="{% static 'images/cash-flow.png' %}" width="35%" height="45%" alt="Image 5">
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="">
+              <div class="text-center p-4">
+                <h5 class="hidden" style="color: #FFF700;"><b> INNOVATIVE DESIGN</b></h5>
+                <img class="hidden mt-4" src="{% static 'images/creativity.png' %}" width="35%" height="45%" alt="Image 6">
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<div class="container-about parallax"> 
+   
+    <div class="centered" style="width: 100%;">
+      <!-- First Row -->
+      <div class="row mb-5">
+          <div class="col-md-4">
+            <div class="mt-3">
+              <h2 class="hidden ">Completed Project</h2>
+              <span class="hidden count">100+</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mt-3">
+              <h2 class="hidden ">Under Construction</h2>
+              <span class="hidden count">10+</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mt-3">
+              <h2 class="hidden ">Registered Customers</h2>
+              <span class="hidden count">15+</span>
+            </div>
+          </div>
+      </div>
+      <!-- Second Row -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="hidden ">
+            <h1 class="mt-5">Precision in Every Detail, Excellence in Every Project.</h1>
+            <hr class="my-3" style="width: 30%; border-color:#FFF700; border-width: 3px;">
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  
+
+<div class="container center" style="width: 80%">
+  <div class="center text-center pt-4 pb-4 mt-5 hidden">
+      <h2 id="bold-text-header" style="color: rgb(0, 0, 0)">OUR PROJECT</h2>
+  </div>
+</div>
+<div class="mt-4 mb-4" style="margin-left: 5%; margin-right: 5%;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-12.jpeg' %}" alt="Image">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-1.jpeg' %}" alt="photo">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-25.jpeg' %}" alt="photo">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-19.jpeg' %}" alt="photo">
+            </div>
+        </div>
+    </div>
+    <!-- Second Row -->
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-28.jpeg' %}" alt="photo">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-23.jpeg' %}" alt="photo">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-2.jpeg' %}" alt="photo">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hidden ">
+              <img class="image-size" src="{% static 'images/image-20.jpeg' %}" alt="photo">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden container center text-center" style="width: 150px">
+  <a href="{% url 'gallery' %}" class="btn btn-main font-size p-2">See more</a>
+</div>
+
+
+<div class="p-5 mt-4" style="background-color: #9f8953;">
+  <!-- One Row with Two Columns -->
+  <div class="row">
+      <!-- First Column (30% width) -->
+      <div class="col-md-3 text-center p-5">
+        <div class="slider-square hidden">
+          <div class="container-animation">
+            <div class="slide x"></div>
+            <div class="slide y"></div>
+            <div class="slide z"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Second Column (70% width) -->
+      <div class="col-md-9 p-5">
+          <div class="hidden table-responsive">
+              <table class="table">
+                  <tbody style="background-color: #e7e7e7;">
+                      <tr>
+                          <td class="text-nowrap">41-Construction of building</td>
+                          <td class="text-nowrap">4100-Construction of building</td>
+                          <td class="text-nowrap">41001-Construction of buildings carried out own account basis or on a fee or contract basis</td>
+                          <td class="text-nowrap">Manufacturing</td>
+                      </tr>
+                      <tr>
+                          <td class="text-nowrap">41-Construction of building</td>
+                          <td class="text-nowrap">4100-Construction of building</td>
+                          <td class="text-nowrap">41002-Activities relating to alteration, addition, repair, maintenance carried out on own-account basis or on a fee or contract basis</td>
+                          <td class="text-nowrap">Manufacturing</td>
+                      </tr>
+                      <tr>
+                          <td class="text-nowrap">41-Construction of building</td>
+                          <td class="text-nowrap">4100-Construction of building</td>
+                          <td class="text-nowrap">41003-Assembly and erection of prefabricated construction on the site</td>
+                          <td class="text-nowrap">Manufacturing</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

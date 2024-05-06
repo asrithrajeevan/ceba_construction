@@ -1,0 +1,31 @@
+<!-- {% extends 'base.html' %} -->
+{% load static %}
+
+{% block content %}
+
+<style>
+  .parallax {
+    background-image: url("../static/images/aboutUS.png");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .indented-paragraph {
+    text-indent: 80px; /* Adjust the value as needed */
+  }
+</style>
+
+<div class="container-about parallax">
+  <div class="centered">Projects</div>
+</div>
+
+<div class="container center mt-5">
+  <div class="container">
+    <h1>Our Projects</h1>
+  </div>
+</div>
+
+{% endblock %}

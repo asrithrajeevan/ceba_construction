@@ -1,0 +1,521 @@
+body {
+  padding-top: 39px;
+  background-color: #ffffff; /* Set the body background color */
+}
+
+/* Adjust the padding based on your header's height */
+.navbar {
+  margin-bottom: 0;
+}
+
+/* Upper Header Container */
+.navbar-color-top {
+  background-color:#9f8953; /* Set the background color to orange */
+}
+.navbar-fixed-Bottom {
+  background-color: rgb(0, 0, 0); /* Set the background color to orange */
+}
+
+/* Bottom Container */
+.navbar:not(.navbar-fixed-top) {
+  background-color: #292929; /* Set the background color to light black */
+}
+
+.navbar:not(.navbar-fixed-top) .nav-link {
+  color: #ffffff; /* Set the font color to white */
+}
+
+/* Footer */
+.footer {
+  background-color:#27292b; /* Set the background color to light black */
+  color: #fff; /* Set text color to white for better visibility */
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.ml-3 {
+  font-size: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.nav-link{
+  color: #fff;
+}
+
+#logo-style{
+  color: #ffffff;
+  font-size: 25px;
+}
+
+/* Dropdown Menu Styles */
+.navbar:not(.navbar-fixed-top) .navbar-nav .dropdown-menu {
+  background-color: #343a40; /* Set the background color to light black */
+  color: #ffffff;
+}
+
+/* Dropdown Link Styles */
+.navbar:not(.navbar-fixed-top) .navbar-nav  .dropdown-menu .dropdown-item {
+  color: rgb(255, 247, 0)
+}
+
+#collapse-botton{
+  background-color: #fff;
+  size: 4px;
+}
+
+
+/* Add this code to your CSS file or style section */
+.banner-section {
+  overflow: hidden;
+}
+
+.banner-container {
+  display: flex;
+  width: 300%; /* Three banners, each taking 100% width */
+  animation: scrollBanners 15s linear infinite; /* Adjust the duration as needed */
+}
+
+.banner {
+  flex: 1;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes scrollBanners {
+  0% {
+    transform: translateX(0);
+  }
+  33.33% {
+    transform: translateX(-100%);
+  }
+  66.66% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Add this to your CSS file or style section */
+.carousel {
+margin-top: 20px;
+}
+
+.carousel-inner {
+border-radius: 10px;
+overflow: hidden;
+}
+
+.carousel-item {
+text-align: center;
+animation: fadeInUp 1s ease-in-out;
+}
+
+.carousel-caption {
+background-color: rgba(0, 0, 0, 0.5);
+padding: 20px;
+border-radius: 0 0 10px 10px;
+}
+
+.carousel-caption h5 {
+color: #fff;
+}
+
+.container-banner-width{
+width: 500%;
+}
+
+
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+
+.image-container {
+position: relative;
+display: inline-block;
+}
+
+.container-about {
+position: relative;
+text-align: center;
+color: white;
+}
+
+.centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-weight: 900;
+font-size: 40px;
+}
+
+ul li:hover {
+background-color:#9f8953;
+border-radius: 10px;
+}
+
+#navigation-text{
+font-weight: 600
+}
+
+#navigation-text{
+font-weight: 600
+}
+#footer-container{
+background-color: #292929;
+}
+.input-fields{
+background-color: #333;
+padding-bottom: 10px;
+}
+.btn{
+border-width: 2px;
+border-color: #000;
+background-color: rgb(0, 0, 0);
+display: block;
+padding: 5px;
+color:  #9f8953;
+margin: 10px 0 0;
+width:100%;
+font-size: 13px;
+border-radius: 2px
+}.btn:hover{
+background-color: #7d672e;
+color: #ffffff;
+}
+.ex4 i {
+transition: all 600ms cubic-bezier(.99, 0, .57, .94);
+transform: rotate(0deg); /* Initial transform value */
+}
+
+.ex4 i:hover {
+color: rgb(255, 247, 0);
+transform: rotate(360deg);
+}
+.rotate{
+width:80px;
+height:80px;
+animation: rotation infinite 3s linear;
+z-index: 1;
+}
+
+@keyframes rotation{
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+}
+
+
+.link:hover{
+text-decoration: none;
+color: #000;
+}
+
+/*===================*/
+/* PULSE GROW
+/*===================*/
+
+@-webkit-keyframes pulse-grow-on-hover {
+to {
+-webkit-transform: scale(1.1);
+transform: scale(1.1);
+}
+}
+@keyframes pulse-grow-on-hover {
+to {
+-webkit-transform: scale(1.1);
+transform: scale(1.1);
+}
+}
+.pulse-grow-on-hover {
+display: inline-block;
+vertical-align: middle;
+-webkit-transform: perspective(1px) translateZ(0);
+transform: perspective(1px) translateZ(0);
+box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.pulse-grow-on-hover:hover, .pulse-grow-on-hover:focus, .pulse-grow-on-hover:active {
+-webkit-animation-name: pulse-grow-on-hover;
+animation-name: pulse-grow-on-hover;
+-webkit-animation-duration: 0.3s;
+animation-duration: 0.3s;
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+-webkit-animation-iteration-count: infinite;
+animation-iteration-count: infinite;
+-webkit-animation-direction: alternate;
+animation-direction: alternate;
+}
+#icon-white{
+color: white;
+}
+
+#shadow{
+-webkit-box-shadow:0px 0px 17px 1px rgba(148,148,148,1);
+-moz-box-shadow: 0px 0px 17px 1px rgba(148,148,148,1);
+box-shadow: 0px 0px 17px 1px rgba(148,148,148,1);
+}
+
+#navigation-text{
+font-weight: 600
+}
+#footer-container{
+background-color: #292929;
+}
+.input-fields{
+background-color: #333;
+padding-bottom: 10px;
+}
+.btn{
+border-width: 2px;
+border-color: #000;
+background-color: rgb(0, 0, 0);
+display: block;
+padding: 5px;
+color:   rgb(255, 247, 0);
+margin: 10px 0 0;
+width:100%;
+font-size: 13px;
+border-radius: 2px
+}.btn:hover{
+background-color:  rgb(255, 247, 0);
+color: #000;
+border-color: #000;
+}
+.ex4 i {
+transition: all 600ms cubic-bezier(.99, 0, .57, .94);
+transform: rotate(0deg); /* Initial transform value */
+}
+
+.ex4 i:hover {
+color:  rgb(255, 247, 0);
+transform: rotate(360deg);
+}
+.rotate{
+width:80px;
+height:80px;
+animation: rotation infinite 3s linear;
+z-index: 1;
+}
+
+@keyframes rotation{
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+}
+
+
+.link:hover{
+text-decoration: none;
+color: #000;
+}
+
+/*===================*/
+/* PULSE GROW
+/*===================*/
+
+@-webkit-keyframes pulse-grow-on-hover {
+to {
+-webkit-transform: scale(1.1);
+transform: scale(1.1);
+}
+}
+@keyframes pulse-grow-on-hover {
+to {
+-webkit-transform: scale(1.1);
+transform: scale(1.1);
+}
+}
+.pulse-grow-on-hover {
+display: inline-block;
+vertical-align: middle;
+-webkit-transform: perspective(1px) translateZ(0);
+transform: perspective(1px) translateZ(0);
+box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.pulse-grow-on-hover:hover, .pulse-grow-on-hover:focus, .pulse-grow-on-hover:active {
+-webkit-animation-name: pulse-grow-on-hover;
+animation-name: pulse-grow-on-hover;
+-webkit-animation-duration: 0.3s;
+animation-duration: 0.3s;
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+-webkit-animation-iteration-count: infinite;
+animation-iteration-count: infinite;
+-webkit-animation-direction: alternate;
+animation-direction: alternate;
+}
+#icon-white{
+color: white;
+}
+
+/* #top-padding {
+margin-top: -3%;
+} */
+
+
+.parallax {
+/* The image used */
+background-image: url("../static/images/aboutUS.png");
+
+/* Set a specific height */
+min-height: 500px; 
+
+/* Create the parallax scrolling effect */
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.indented-paragraph {
+  text-indent: 80px; /* Adjust the value as needed */
+}
+
+section {
+  overflow: hidden;
+  position: relative;
+}
+
+.news-container {
+  display: flex;
+  animation: scrollNews 20s linear infinite; /* Adjust the duration as needed */
+}
+
+.news-item {
+  flex: 0 0 auto;
+  width: 30%;
+  box-sizing: border-box;
+  padding: 1px;
+  text-align: center;
+  /* border: 1px solid #ccc; */
+  margin-right: -5%;
+}
+
+@keyframes scrollNews {
+  0% {
+  transform: translateX(0);
+  }
+  100% {
+  transform: translateX(-100%);
+  }
+}
+
+.parallax {
+background-image: url("../static/images/aboutUS.png");
+min-height: 500px;
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.indented-paragraph {
+text-indent: 80px; /* Adjust the value as needed */
+}
+
+.parallax {
+/* The image used */
+background-image: url("../static/images/aboutUS.png");
+
+/* Set a specific height */
+min-height: 500px; 
+
+/* Create the parallax scrolling effect */
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.indented-paragraph {
+  text-indent: 80px; /* Adjust the value as needed */
+}
+
+section {
+  overflow: hidden;
+  position: relative;
+}
+
+.news-container {
+  display: flex;
+  animation: scrollNews 20s linear infinite; /* Adjust the duration as needed */
+}
+
+.news-item {
+  flex: 0 0 auto;
+  width: 30%;
+  box-sizing: border-box;
+  padding: 1px;
+  text-align: center;
+  /* border: 1px solid #ccc; */
+  margin-right: -5%;
+}
+
+@keyframes scrollNews {
+  0% {
+  transform: translateX(0);
+  }
+  100% {
+  transform: translateX(-100%);
+  }
+}

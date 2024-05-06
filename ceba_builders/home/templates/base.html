@@ -1,0 +1,356 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add this within the <head> section -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJop+br/Z9gM5t9nX4ld7F81I3XIqDj" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>{% block title %}{% endblock%}</title>
+    <script src="https://kit.fontawesome.com/457a315592.js"crossorigin="anonymous"></script>
+
+<style>
+    .top-padding {
+        margin-top: -3%;
+    }
+    @media(max-width : 900px){
+        .top-padding {
+            margin-top: -5%;
+        }
+    }
+    @media(max-width : 500px){
+        .top-padding {
+            margin-top: -10.5%;
+        }
+    }
+    body {
+        font-family: 'Poppins';
+        font-size: 14px;
+    }
+    @media(max-width : 500px){
+        body{
+            font-size: small;
+        }
+    }
+
+    #bold-text-header {
+        font-weight:bolder
+    }
+
+    .btn-main {
+        border-radius: 10px;
+    }
+
+    #font-color-white{
+        color: white;
+    }
+
+    .bottomContainer{
+        /* padding-bottom: -50px; */
+        background-color:#FFF700
+    }
+
+
+    .hidden {
+        opacity: 0;
+        transform: scale(0);
+        transition: opacity 1s, transform 1s;
+    }
+    .show {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .line{
+        line-height: 33px;
+    }
+
+    .fotter-link:hover {
+        color: #FFD700; /* Change this color to the desired hover color */
+    }
+
+    .logo-img {
+        position: absolute;
+        width: 12%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: -5%;
+        border: 5px solid  #282828;; /* Specify border properties */
+    }
+    @media(max-width:470px){
+        .logo-img {
+            position: absolute;
+            right: 15;
+            bottom: 5;
+            width: 25%; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            border: 5px solid  #282828;; /* Specify border properties */
+        }
+    }
+    .top-marg{
+        margin-top: -10px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body{
+        margin: 0;
+    }
+    .parallax {
+        background-image: url("../static/images/aboutUS.png");
+        max-height: 500px; 
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; /* Adjust the background size */
+
+    }
+    .container-image{
+        display: flex;
+        flex-wrap: wrap;
+        /* margin-left: 5%; */
+        /* margin-right: 5%; */
+    }
+    .section{
+        flex: 25%;
+        padding: 0 3px
+    }
+    .image-size{
+        width: 100%;
+        margin: 4px;
+        transition: 1s ease-in-out;
+        border: 1px solid #282828; /* Specify border properties */
+    }
+    @media(max-width:1500px){
+        .section{
+            flex:33.3333%
+        }
+    }
+    @media(max-width:754px){
+        .section{
+            flex:50%
+        }
+    }
+    @media(max-width:500px){
+        .section{
+            flex:100%
+        }
+    }
+    img:hover{
+        /* transform: scale(1.1); */
+        border-radius: 25px;
+    }
+</style>
+
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-color-top navbar-fixed-top py-0 sticky-top top-padding">
+        <div class="container p-1">
+            <div class="navbar-header">
+                <div class="d-flex align-items-center">
+                    <span class="hidden material-symbols-outlined mr-1" style="color: rgb(255, 255, 255); ">mail</span>
+                    <span class="hidden ml-1 " id="font-color-white">Email: info@example.com</span>
+                    <span class="hidden material-symbols-outlined ml-2" style="color: rgb(255, 255, 255); ">call</span>
+                    <span class="hidden ml-1 "id="font-color-white">Phone: +1234567890</span>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="hidden nav-item ml-3"><a class="nav-link" id="font-color-white" href="#">FAQ</a></li>
+                    <li class="hidden nav-item ml-3"><a class="nav-link" id="font-color-white" href="#">Help Desk</a></li>
+                    <li class="hidden nav-item ml-3"><a class="nav-link" id="font-color-white" href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Second Header Section -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top sticky-top">
+        <div class="container py-5">
+            <!-- Left Section of Second Header -->
+            
+            <img src="{% static 'images/cebaLogo.jpg' %}" alt="logo" class="logo-img hidden">
+            <!-- Right Section of Second Header -->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="hidden nav-item"><a class="nav-link" style="color: white;" href={% url 'home' %}>Home</a></li>
+                    <li class="hidden nav-item"><a class="nav-link" style="color: white;" href={% url 'about' %}>About Us</a></li>
+                    <li class="hidden nav-item"><a class="nav-link" style="color: white;" href={% url 'home' %}>Service</a></li>
+                    <li class="hidden nav-item"><a class="nav-link" style="color: white;" href={% url 'gallery' %}>Gallery</a></li>
+                    <li class="hidden nav-item"><a class="nav-link" style="color: white;" href={% url 'contact' %}>Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- for responsive button -->
+            <button class="navbar-toggler" id="collapse-botton" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <div class="mb-3 mr-3 rotate" style="position: fixed; bottom: 15px; right: 15px;">
+        <a href="https://wa.me/+91 9995388784" target="_blank" class="link link-four pulse-grow-on-hover"><img src="{% static 'images/whatsapp.png' %}" style="max-width: 100%; height: auto;" alt="whatsapp"></a>
+    </div>
+
+   <section>
+        <footer class="pt-3 text-light" id="footer-container">
+            <div class="container center p-2">
+                <div class="center text-center">
+                    <div class="ex4 pt-4" style="background-color: #282828;">
+                        <a class="hidden" id="icon-white" target="_blank" href=""><i class="fa fa-twitter fa-2x mx-4" aria-hidden="true"></i></a>
+                        <a class="hidden" id="icon-white" target="_blank" href=""><i class="fa fa-instagram fa-2x mx-4" aria-hidden="true"></i></i></a>
+                        <a class="hidden" id="icon-white" target="_blank" href="https://wa.me/+91 9995388784"><i class="fa fa-whatsapp fa-2x mx-4" aria-hidden="true"></i></a>
+                        <a class="hidden" id="icon-white" target="_blank" href="https://maps.app.goo.gl/T2gMMkoRYya7NLMt8"> <i class="fa fa-location-arrow fa-2x ml-4" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+              </div>
+            <div class="mt-4">
+                <!-- Grid with Four Columns in Each Row -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="">
+                            <div class="pt-2 container center">
+                                <div class="text-center">
+                                    <label class="mb-4 hidden" style="font-size: 30px; font-weight: 900; color:#FFF700;">Quick Contact</label>
+                                </div>
+                                <div class="d-flex justify-content-center pb-4 text-center">
+                                    <div class="hidden">
+                                        <label style="font-size: 18px; margin-left: -50%; font-weight: 900; color:#FFF700">Location</label><br>
+                                        <label class="hidden" style="font-size: 15px;">Chalod,</label>
+                                        <label class="hidden" style="font-size: 15px;">Kannur,</label>
+                                        <label class="hidden" style="font-size: 15px;">Kerala</label>
+                                    </div>
+                                    <img class="ml-4 hidden" src="{% static 'images/location.png' %}" width="20%" height="20%"  alt="Image 1">
+                                </div>
+                                <div class="text-center">
+                                    <div class="d-flex text-center justify-content-center">
+                                        <span class="hidden material-symbols-outlined " style="color:#FFF700; font-size: 25px;">mail</span>
+                                        <a class="nav-link fotter-link hidden" target="_blank" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSMTFLMSsKMLpTLsrpdbzWrmlnJLQKLbhcJSBmWTWdsXbhpjWNlKCHnwHSRPDmTLBVRvjDfh"><span class="hidden "id="font-famly font-color">llp.ceba@gmail.com</span></a><br><br>
+                                    </div>
+                                    <div class="d-flex text-center justify-content-center">
+                                        <span class="hidden material-symbols-outlined  " style="color: #FFF700; font-size: 25px;">call</span>
+                                        <a class="nav-link fotter-link hidden" target="_blank" href="https://wa.me/+91 9995388784"><span class="hidden "id="font-famly font-color"> 9995388784</span></a>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <img  class="hidden" src="{% static 'images/whatsap.png' %}" width="6%" height="6%" alt="photo" /> 
+                                        <a class="nav-link fotter-link hidden" target="_blank" href="https://wa.me/+91 9995388784"><span class="hidden "id="font-famly font-color"> 9995388784</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <div class="container center d-flex flex-column">
+                                <div class="text-center">
+                                    <label class="mb-4 hidden" style="font-size: 30px; font-weight: 900; color: #FFF700;">Links</label><br>
+                                    <a class="nav-link hidden fotter-link" href={% url 'home' %}>Home</a>
+                                    <a class="nav-link hidden fotter-link" href={% url 'about' %}>About Us</a>
+                                    <a class="nav-link hidden fotter-link" href={% url 'gallery' %}>Gallery</a>
+                                    <a class="nav-link hidden fotter-link" href={% url 'contact' %}>Contact Us</a>
+                                    <a class="nav-link hidden fotter-link" href={% url 'contact' %}>Services</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <div class="container center">
+                                <div class="text-center line">
+                                    <label class="mb-4 hidden" style="font-size: 30px; font-weight: 900; color: #FFF700;">Services</label><br>
+                                    <label class="line hidden">Interior Design</label><br>
+                                    <label class="line hidden">Home Renovation</label><br>
+                                    <label class="line hidden">Plan</label><br>
+                                    <label class="line hidden">3D Modeling</label><br>
+                                    <label class="line hidden">24 Hours Service</label><br>
+                                    <label class="line hidden">Online Help</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <div class="container center">
+                                <div class="text-center">
+                                    <label class="mb-4 hidden" style="font-size: 30px; font-weight: 900; color: #FFF700;">Request Consultation</label><br>
+                                    <form action="#" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                          <input type="text" class="form-control hidden" id="name" name="name" placeholder="Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <input type="number" class="form-control hidden" id="number" name="number" placeholder="number" required>
+                                        </div>
+                                        <div class="form-group">
+                                          <textarea class="form-control hidden" id="message" name="message" rows="2" placeholder="Enter Message" required></textarea>
+                                        </div>
+                                
+                                        <div class="form-row top-marg">
+                                          <div class="col-md-6">
+                                            <button class="btn btn-main hidden" type="submit">Send Message</button>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <button class="btn btn-main hidden" type="reset">Reset</button>
+                                          </div>
+                                        </div>
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repeat the above four columns as needed for more rows -->
+                </div>
+            </div>
+
+
+        </footer>
+</section>
+    <!-- Bootstrap and jQuery Scripts (Add them at the end of the body for better performance) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+<!-- 
+<div class="lds-ripple"><div></div><div></div></div> -->
+</html>
+
+
+<script>
+// it occures oll times
+// let observer = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//         if (entry.isIntersecting) {
+//             entry.target.classList.add('show');
+//         } else {
+//             entry.target.classList.remove('show');
+//         }
+//     });
+// }, { threshold: 0.5 });
+
+// const hiddenElement = document.querySelectorAll('.hidden');
+// hiddenElement.forEach((el) => observer.observe(el));
+
+// It ocures only first scroll
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target); // Stop observing after the first scroll
+        }
+    });
+}, { threshold: 0.5 });
+
+const hiddenElement = document.querySelectorAll('.hidden');
+hiddenElement.forEach((el) => observer.observe(el));
+
+
+</script> 
