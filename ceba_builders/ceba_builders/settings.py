@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(DEBUG=(bool, False))
 env_file = os.path.join(BASE_DIR, '.env')
+print(env_file)
 env.read_env(env_file)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
